@@ -21,8 +21,8 @@
                 "role": "",
                 "parallel": true,
                 "common": false,
-                "group":"ffeac65c-b9d0-11ed-a768-f40f241fd1e7",
                 "on_transfer_exist": true,
+                "weight": 50,
             },
             {
                 "id": "verify2",
@@ -33,8 +33,8 @@
                 "role": "",                
                 "parallel": true,
                 "common": false,
-                "group":"ffeac65c-b9d0-11ed-a768-f40f241fd1e7",
                 "on_transfer_exist": true,
+                "weight": 50,
             },
             {
                 "id": "pay",
@@ -66,8 +66,8 @@
 
 graph TB
 id1((start)) --> waiting_verify
-waiting_verify --> |verify1| waiting_pay
-waiting_verify --> |verify2| waiting_pay
+waiting_verify -.-> |verify1| waiting_pay
+waiting_verify -.-> |verify2| waiting_pay
 waiting_pay --> |pay| payed
 
 waiting_verify & waiting_pay -->|cancel| canceled
@@ -79,6 +79,10 @@ Parallel transition
 
 Common transition
 通用的transition可以被多个stage共享.
+
+weight 
+transition的权重，默认是100 表示当前transition完成后，blueprint就从上一个stage转变成下一个stage
+对于parallel transition，单个transition的权重都是小于100， 正常情况多个parallel transition的权重之和为100.
 
 # 接口列表
 ## trigger transition
