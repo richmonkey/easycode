@@ -61,6 +61,19 @@
         ]
     }
 
+
+```mermaid
+
+graph TB
+id1((start)) --> waiting_verify
+waiting_verify --> |verify1| waiting_pay
+waiting_verify --> |verify2| waiting_pay
+waiting_pay --> |pay| payed
+
+waiting_verify & waiting_pay -->|cancel| canceled
+
+```
+
 Parallel transition
 所有并行的transition完成后，表单记录才会进入到下一个stage.
 

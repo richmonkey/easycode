@@ -9,6 +9,7 @@
         "condition": ["Name", "GET_FIELD", "xx", "EQUALS"], 
         "approvers": [
             {
+                "name": "leader"
                 "users": [],
                 "role": "",
                 "approval_label": "Approve",
@@ -18,6 +19,7 @@
                 "on_deny_exist": true,
             },
             {
+                "name": "manager",
                 "users": [],
                 "role": "",
                 "approval_label": "Approve",
@@ -28,6 +30,11 @@
             },
         ]
     }
+
+```mermaid
+graph TB
+id1((start)) --> leader --> manager --> id2((completed))
+```
 
 No users if role exists, no role if users exists, only one field of users or role works.
 Always apply the approval process if condition is empty.
